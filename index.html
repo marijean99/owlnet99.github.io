@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Owl.net</title>
+  <style>
+     body {
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #c2dff5;
+      font-family: helvetica, pretendard;
+      color: #111;
+      overflow: hidden;
+    }
+
+    /* background layer */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .float {
+      position: absolute;
+      animation: float 14s ease-in-out infinite;
+      opacity: 0.9;
+    }
+
+    .f1 { top: 12%; left: 18%; width: 100px; animation-duration: 16s; }
+    .f2 { top: 42%; right: 12%; width: 100px; animation-duration: 20s; }
+    .f3 { bottom: 18%; left: 38%; width: 100px; animation-duration: 18s; }
+    .f4 { top: 8%; right: 30%; width: 100px; animation-duration: 22s; }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-22px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* content layer */
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .text-wrap {
+      min-height: 200vh;
+      padding: 30vh 10vw;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+
+    .paragraph {
+      font-size: clamp(12px, 3.5vw, 16px);
+      line-height: 1.7;
+      max-width: 420px;
+      color: #222;
+    }
+
+    @media (max-width: 768px) {
+      .text-wrap {
+        grid-template-columns: 1fr;
+        padding: 22vh 8vw;
+      }
+
+      .p2 { display: none; }
+
+      .paragraph {
+        font-size: clamp(10px, 3.5vw, 14px);
+        text-align: center;
+        margin: 0 auto;
+      }
+    
+    }
+
+    /* ---- text lists ---- */
+    .list {
+      position: absolute;
+      font-size: clamp(12px, 3.5vw, 16px);
+      line-height: 1.6;
+    }
+
+    .list h3 {
+      margin: 0 0 6px 0;
+      font-weight: normal;
+      text-decoration: underline;
+    }
+
+    .list ul {
+      
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .list a {
+   color: inherit;
+   text-decoration: none;
+  }
+    .list a:visited {
+    color: inherit;
+    }
+
+    .list li a {
+    color: inherit;
+    text-decoration: none;
+    display: inline-block;
+    }
+
+    .list li:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    .hardware {
+      top: 40px;
+      left: 40px;
+    }
+
+    .member {
+      top: 40px;
+      right: 100px;
+      text-align: left;
+    }
+
+    .files {
+      top: 280px;
+      right: 60px;
+    }
+
+    /* ---- floating items ---- */
+    .item {
+      position: absolute;
+      transition: transform 0.3s ease;
+    }
+
+    .item img {
+      width: 80px;
+      display: block;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+
+    .item:hover {
+      transform: scale(1.05) rotate(-1deg);
+    }
+
+    /* ---- description text ---- */
+    .description {
+      position: absolute;
+      left: 50%;
+      top: 45%;
+      transform: translate(-50%, -50%);
+      width: 260px;
+      font-size: clamp(10px, 3.5vw, 16px);
+      line-height: 1.5;
+      opacity: 0.8;
+    }
+
+    /* ---- boo button ---- */
+    #surprise {
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: transparent;
+      border: 1px solid #111;
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: clamp(10px, 3.5vw, 16px);
+      cursor: pointer;
+      opacity: 0.8;
+    }
+
+    #surprise:hover {
+      opacity: 1;
+      background: rgba(0,0,0,0.05);
+    }
+
+    /* ---- contact ---- */
+    .contact {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+      font-size: clamp(12px, 3.5vw, 16px);
+      font-weight: bold;
+      .list li {
+      text-decoration: none;
+     }
+      .list li:hover {
+      text-decoration-line: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+  }
+    }
+
+    .contact a {
+      color: inherit;
+      text-decoration: none;
+      display: block;
+      opacity: 0.85;
+    }
+
+    .contact a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-layer">
+    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbHxs40%2FdJMcafZLxTg%2FAAAAAAAAAAAAAAAAAAAAAPdXBTNELN2NaaGEvCENyWUex2exfXyf1U05B74pwp-T%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1772290799%26allow_ip%3D%26allow_referer%3D%26signature%3DPvzyt5CZ%252F%252BHl%252FnAKSAa9y2XL%252F7o%253D" class="float f1" alt="owl blue" />
+    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FcclLBI%2FdJMcagEpyju%2FAAAAAAAAAAAAAAAAAAAAAFnEpylQd4U_v_C0WkyG5H8HqpVjf0D_OOYpGkvfSGP-%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1772290799%26allow_ip%3D%26allow_referer%3D%26signature%3DkQh%252BXMTVXCedlthwusts12iTQe8%253D" class="float f2" alt="owl white" />
+    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbJDOlz%2FdJMcagRVXHB%2FAAAAAAAAAAAAAAAAAAAAAPwnxD2f4VWmUG8agG1CK6AaQP-C8eaJdPepo9VcjC_G%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1772290799%26allow_ip%3D%26allow_referer%3D%26signature%3DjmZEPWTRyhUgB4OTTB8fCkgkpGE%253D" class="float f3" alt="owl light" />
+    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbhxpTE%2FdJMcagRVXHA%2FAAAAAAAAAAAAAAAAAAAAANcA1fuOqyVrjnX60IdZjFsk3ELPh8QiCI99iu6HKvYQ%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1772290799%26allow_ip%3D%26allow_referer%3D%26signature%3DAS40kHhR4mgcJN%252BJuv14%252B9jn%252FHI%253D" class="float f4" alt="owl logo" />
+  </div>
+
+  <main>
+    <section class="text-wrap">
+      <p class="paragraph p1">
+        Welcome, to the Owl.net <br>
+        This is Network PostOffice's new digital space. <br>
+        Please take your time to explore.
+      </p>
+      <p class="paragraph p2">
+        Electronic Network Love.<br>
+        One time dance with me,<br>
+        Two times fly with me.<br>
+      </p>
+    </section>
+  </main>
+
+  <!-- Hardware -->
+    <nav class="list hardware">
+      <h3>Our World,</h3>
+      <ul>
+        <li>Drink Gift</li>
+        <li>(so)lucky draw</li>
+        <li>Gatcha!</li>
+        <li>and...</li>
+      </ul>
+    </nav>
+
+    <!-- MEMBER -->
+    <nav class="list member">
+      <h3>Networklove (4)</h3>
+      <ul>
+        <a href="https://instagram.com/joshu_acoustic"><li>JOSHUA</li></a>
+        <a href="https://instagram.com/junhui_moon"><li>JUN</li></a>
+        <a href="https://instagram.com/xuminghao_o"><li>THE8</li></a>
+        <a href="https://instagram.com/vernonline"><li>VERNON</li></a>
+      </ul>
+    </nav>
+
+    <!-- Files -->
+    <nav class="list files">
+      <h3>Location</h3>
+      <ul>
+        <li>서울시 마포구 
+        <br>Network Post Office</br>
+        다이버시티</br></li>
+      </ul>
+    </nav>
+
+    <!-- Floating images -->
+    <div class="item" style="left:20vw; top:15vh;">
+      <img src="owl-blue.png" alt="">
+    </div>
+
+    <div class="item" style="left:55vw; top:18vh;">
+      <img src="owl-white.png" alt="">
+    </div>
+
+    <div class="item" style="left:70vw; top:55vh;">
+      <img src="owl-logo.png" alt="">
+    </div>
+
+    <div class="item" style="left:25vw; top:65vh;">
+      <img src=".png" alt="">
+    </div>
+
+
+    <!-- Surprise -->
+    <button id="surprise">surprise me</button>
+
+    <!-- Contact -->
+    <div class="contact">
+      <a href="https://x.com/nwloversclub">X</a>
+      <br>
+      <a href="https://spin-spin.com/OwlneT">spin-spin</a>
+    </div>
+
+</body>
+</html>
